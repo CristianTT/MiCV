@@ -9,6 +9,13 @@ public class Web {
 
 	private StringProperty url = new SimpleStringProperty();
 
+	public Web(String url) {
+		this.url.set(url);
+	}
+	
+	public Web() {
+	}
+
 	public final StringProperty urlProperty() {
 		return this.url;
 	}
@@ -21,5 +28,12 @@ public class Web {
 	public final void setUrl(final String url) {
 		this.urlProperty().set(url);
 	}
+
+	@Override
+	public String toString() {
+		return url.get();
+	}
+	
+	
 
 }

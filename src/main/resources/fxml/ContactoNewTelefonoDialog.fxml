@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER">
+         <children>
+            <Label prefWidth="55.0" text="Número:" />
+            <TextField fx:id="numeroText" promptText="Númerode teléfono" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label prefWidth="55.0" text="Tipo:" />
+            <ComboBox fx:id="tipoCombo" prefWidth="150.0" promptText="Seleccione un tipo" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

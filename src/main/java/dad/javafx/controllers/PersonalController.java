@@ -8,8 +8,6 @@ import java.util.ResourceBundle;
 
 import dad.javafx.models.Nacionalidad;
 import dad.javafx.utils.LectorCSV;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,15 +55,10 @@ public class PersonalController implements Initializable {
 		codigoPostalText.textProperty().bindBidirectional(CVController.getCV().getPersonal().codigoPostalProperty());
 		direccionText.textProperty().bindBidirectional(CVController.getCV().getPersonal().direccionProperty());
 		nacimientoDate.valueProperty().bindBidirectional(CVController.getCV().getPersonal().fechaNacimientoProperty());
-		nacionalidadList.itemsProperty().bind(CVController.getCV().getPersonal().nacionalidadesProperty());
-		paisCombo.valueProperty().bind(CVController.getCV().getPersonal().paisProperty());
+		nacionalidadList.itemsProperty().bindBidirectional(CVController.getCV().getPersonal().nacionalidadesProperty());
+		paisCombo.valueProperty().bindBidirectional(CVController.getCV().getPersonal().paisProperty());
 
-		eliminarNacionalidadBtn.disableProperty()
-				.bind(
-					Bindings
-						.when(new SimpleBooleanProperty(nacionalidadList.getSelectionModel().isEmpty()))
-						.then(false)
-						.otherwise(true));
+		eliminarNacionalidadBtn.disableProperty().bind(nacionalidadList.getSelectionModel().selectedItemProperty().isNull());
 	}
 
 	public GridPane getView() {

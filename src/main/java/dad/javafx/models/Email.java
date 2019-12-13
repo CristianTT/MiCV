@@ -9,6 +9,13 @@ public class Email {
 
 	private StringProperty direccion = new SimpleStringProperty();
 
+	public Email(String direccion) {
+		this.direccion.set(direccion);
+	}
+	
+	public Email() {
+	}
+
 	public final StringProperty direccionProperty() {
 		return this.direccion;
 	}
@@ -21,5 +28,12 @@ public class Email {
 	public final void setDireccion(final String direccion) {
 		this.direccionProperty().set(direccion);
 	}
+
+	@Override
+	public String toString() {
+		return direccion.get();
+	}
+	
+	
 
 }

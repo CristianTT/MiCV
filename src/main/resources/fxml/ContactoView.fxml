@@ -20,7 +20,7 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TableView fx:id="telefonosTable" onMouseReleased="#onSeleccionarTelefonoAction" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <TableView fx:id="telefonosTable" editable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="numeroColumn" prefWidth="160.0" text="Número" />
                             <TableColumn fx:id="tipoColumn" prefWidth="160.0" text="Tipo" />
@@ -43,7 +43,7 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TableView fx:id="emailsTable" onMouseReleased="#onSeleccionarEmailAction" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <TableView fx:id="emailsTable" editable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="emailsColumn" prefWidth="320.0" text="Email" />
                           </columns>
@@ -65,7 +65,7 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TableView fx:id="websTable" onMouseReleased="#onSeleccionarWebAction" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <TableView fx:id="websTable" editable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="urlColumn" prefWidth="320.0" text="URL" />
                           </columns>

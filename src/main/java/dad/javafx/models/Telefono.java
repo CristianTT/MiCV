@@ -38,4 +38,9 @@ public class Telefono {
 		this.tipoProperty().set(tipoTelefono);
 	}
 
+	@Override
+	public String toString() {
+		return numero.get();
+	}
+
 }
