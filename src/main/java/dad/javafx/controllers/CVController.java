@@ -3,6 +3,7 @@ package dad.javafx.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dad.javafx.MiCVApp;
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -35,6 +37,7 @@ public class CVController implements Initializable {
 	private ConocimientosController conocimientosController;
 
 	private static CV cv = new CV();
+	private File fileToSave = null;
 
 	public CVController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CVView.fxml"));
@@ -47,7 +50,7 @@ public class CVController implements Initializable {
 		try {
 			cv.setPersonal(new Personal());
 			cv.setContacto(new Contacto());
-			
+
 			personalController = new PersonalController();
 			contactosController = new ContactoController();
 			formacionController = new FormacionController();
@@ -62,7 +65,7 @@ public class CVController implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error en MiCVApp");
+			alert.setTitle("MiCVApp");
 			alert.setHeaderText("No se puede iniciar la aplicación.");
 			alert.showAndWait();
 			Platform.exit();
@@ -85,8 +88,8 @@ public class CVController implements Initializable {
 			ExtensionFilter extFilterAll = new ExtensionFilter("Todos los archivos", "*.*");
 			fileChooser.getExtensionFilters().add(extFilterXML);
 			fileChooser.getExtensionFilters().add(extFilterAll);
-			File file = fileChooser.showOpenDialog(MiCVApp.stage);
-			CV nuevo = CV.load(file);
+			fileToSave = fileChooser.showOpenDialog(MiCVApp.stage);
+			CV nuevo = CV.load(fileToSave);
 			cv.getPersonal().setIdentificacion(nuevo.getPersonal().getIdentificacion());
 			cv.getPersonal().setNombre(nuevo.getPersonal().getNombre());
 			cv.getPersonal().setApellidos(nuevo.getPersonal().getApellidos());
@@ -104,7 +107,7 @@ public class CVController implements Initializable {
 			cv.setHabilidades(nuevo.habilidadesProperty());
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error en MiCVApp");
+			alert.setTitle("MiCVApp");
 			alert.setHeaderText("Error al cargar el CV.");
 			alert.showAndWait();
 		}
@@ -117,7 +120,18 @@ public class CVController implements Initializable {
 
 	@FXML
 	void onGuardarAction(ActionEvent event) {
-
+		if (fileToSave != null) {
+			try {
+				cv.save(fileToSave);
+			} catch (Exception e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("MiCVApp");
+				alert.setHeaderText("Error al guardar el CV.");
+				alert.showAndWait();
+			}
+		} else {
+			onGuardarComoAction(null);
+		}
 	}
 
 	@FXML
@@ -128,11 +142,11 @@ public class CVController implements Initializable {
 			ExtensionFilter extFilterAll = new ExtensionFilter("Todos los archivos", "*.*");
 			fileChooser.getExtensionFilters().add(extFilterXML);
 			fileChooser.getExtensionFilters().add(extFilterAll);
-			File file = fileChooser.showSaveDialog(MiCVApp.stage);
-			cv.save(file);
+			fileToSave = fileChooser.showSaveDialog(MiCVApp.stage);
+			cv.save(fileToSave);
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error en MiCVApp");
+			alert.setTitle("MiCVApp");
 			alert.setHeaderText("Error al guardar el CV.");
 			alert.showAndWait();
 		}
@@ -140,12 +154,40 @@ public class CVController implements Initializable {
 
 	@FXML
 	void onNuevoAction(ActionEvent event) {
-
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("MiCV");
+		alert.setHeaderText("¿Estás seguro de crear un nuevo CV?");
+		alert.setContentText("Si tienes cambios sin guardar se perderán.");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			cv.getPersonal().setIdentificacion("");
+			cv.getPersonal().setNombre("");
+			cv.getPersonal().setApellidos("");
+			cv.getPersonal().setPais("");
+			cv.getPersonal().setLocalidad("");
+			cv.getPersonal().setDireccion("");
+			cv.getPersonal().setCodigoPostal("");
+			cv.getPersonal().setFechaNacimiento(null);
+			cv.getPersonal().nacionalidadesProperty().clear();
+			cv.getContacto().telefonosProperty().clear();
+			cv.getContacto().emailsProperty().clear();
+			cv.getContacto().websProperty().clear();
+			cv.formacionProperty().clear();
+			cv.experienciasProperty().clear();
+			cv.habilidadesProperty().clear();
+		}
 	}
 
 	@FXML
 	void onSalirAction(ActionEvent event) {
-
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("MiCV");
+		alert.setHeaderText("¿Estás seguro de querer salir?");
+		alert.setContentText("Si tienes cambios sin guardar se perderán.");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			Platform.exit();
+		}
 	}
 
 }
