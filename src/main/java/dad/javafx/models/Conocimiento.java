@@ -1,5 +1,7 @@
 package dad.javafx.models;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +16,7 @@ public class Conocimiento extends Idioma {
 		return this.denominacion;
 	}
 
+	@XmlAttribute
 	public final String getDenominacion() {
 		return this.denominacionProperty().get();
 	}
@@ -26,6 +29,7 @@ public class Conocimiento extends Idioma {
 		return this.nivel;
 	}
 
+	@XmlAttribute
 	public final Nivel getNivel() {
 		return this.nivelProperty().get();
 	}

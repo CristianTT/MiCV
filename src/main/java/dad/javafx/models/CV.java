@@ -1,5 +1,13 @@
 package dad.javafx.models;
 
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -7,6 +15,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+@XmlRootElement
 public class CV {
 
 	private ObjectProperty<Personal> personal = new SimpleObjectProperty<Personal>();
@@ -17,10 +26,24 @@ public class CV {
 	private ListProperty<Conocimiento> habilidades = new SimpleListProperty<Conocimiento>(
 			FXCollections.observableArrayList());
 
+	public void save(File file) throws Exception {
+		JAXBContext context = JAXBContext.newInstance(CV.class);
+		Marshaller marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		marshaller.marshal(this, file);
+	}
+
+	public static CV load(File file) throws Exception {
+		JAXBContext context = JAXBContext.newInstance(CV.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		return (CV) unmarshaller.unmarshal(file);
+	}
+
 	public final ObjectProperty<Personal> personalProperty() {
 		return this.personal;
 	}
-
+	
+	@XmlElement
 	public final Personal getPersonal() {
 		return this.personalProperty().get();
 	}
@@ -33,6 +56,7 @@ public class CV {
 		return this.contacto;
 	}
 
+	@XmlElement
 	public final Contacto getContacto() {
 		return this.contactoProperty().get();
 	}
@@ -45,6 +69,7 @@ public class CV {
 		return this.formacion;
 	}
 
+	@XmlElement
 	public final ObservableList<Titulo> getFormacion() {
 		return this.formacionProperty().get();
 	}
@@ -57,6 +82,7 @@ public class CV {
 		return this.experiencias;
 	}
 
+	@XmlElement
 	public final ObservableList<Experiencia> getExperiencias() {
 		return this.experienciasProperty().get();
 	}
@@ -69,6 +95,7 @@ public class CV {
 		return this.habilidades;
 	}
 
+	@XmlElement
 	public final ObservableList<Conocimiento> getHabilidades() {
 		return this.habilidadesProperty().get();
 	}

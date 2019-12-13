@@ -2,8 +2,10 @@ package dad.javafx.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import dad.javafx.models.Titulo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +21,11 @@ public class FormacionController implements Initializable {
 	@FXML
 	private HBox root;
 	@FXML
-	private TableView<?> formacionTable;
+	private TableView<Titulo> formacionTable;
 	@FXML
-	private TableColumn<?, ?> desdeColumn, hastaColumn, denominacionColumn, organizadorColumn;
+	private TableColumn<Titulo, LocalDate> desdeColumn, hastaColumn;
+	@FXML
+	private TableColumn<Titulo, String> denominacionColumn, organizadorColumn;
 	@FXML
 	private Button eliminarBtn;
 
@@ -33,7 +37,11 @@ public class FormacionController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		formacionTable.itemsProperty().bind(CVController.getCV().formacionProperty());
+		desdeColumn.setCellValueFactory(v -> v.getValue().desdeProperty());
+		hastaColumn.setCellValueFactory(v -> v.getValue().hastaProperty());
+		denominacionColumn.setCellValueFactory(v -> v.getValue().denominacionProperty());
+		organizadorColumn.setCellValueFactory(v -> v.getValue().organizadorProperty());
 	}
 
 	public HBox getView() {

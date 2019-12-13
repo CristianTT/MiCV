@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.javafx.models.Conocimiento;
+import dad.javafx.models.Nivel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +21,11 @@ public class ConocimientosController implements Initializable {
 	@FXML
     private HBox root;
     @FXML
-    private TableView<?> conocimientosTable;
+    private TableView<Conocimiento> conocimientosTable;
     @FXML
-    private TableColumn<?, ?> denominacionColumn, nivelColumn;
+    private TableColumn<Conocimiento, String> denominacionColumn;
+    @FXML
+    private TableColumn<Conocimiento, Nivel> nivelColumn;
     @FXML
     private Button eliminarBtn;
     
@@ -33,7 +37,9 @@ public class ConocimientosController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		conocimientosTable.itemsProperty().bind(CVController.getCV().habilidadesProperty());
+		denominacionColumn.setCellValueFactory(v -> v.getValue().denominacionProperty());
+		nivelColumn.setCellValueFactory(v -> v.getValue().nivelProperty());
 	}
 
 	public HBox getView() {

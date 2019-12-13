@@ -9,10 +9,12 @@ import javafx.stage.Stage;
 public class MiCVApp extends Application {
 
 	private CVController controller;
+	public static Stage stage;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		controller = new CVController();
+		stage = primaryStage;
 		
 		Scene scene = new Scene(controller.getView());
 

@@ -1,5 +1,7 @@
 package dad.javafx.models;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,6 +13,7 @@ public class Idioma {
 		return this.certificacion;
 	}
 
+	@XmlAttribute
 	public final String getCertificacion() {
 		return this.certificacionProperty().get();
 	}

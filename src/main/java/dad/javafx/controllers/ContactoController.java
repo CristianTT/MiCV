@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.javafx.models.Email;
+import dad.javafx.models.Telefono;
+import dad.javafx.models.TipoTelefono;
+import dad.javafx.models.Web;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,31 +21,39 @@ import javafx.scene.layout.VBox;
 public class ContactoController implements Initializable {
 
 	@FXML
-    private VBox root;
-    @FXML
-    private TableView<?> telefonosTable;
-    @FXML
-    private TableColumn<?, ?> numeroColumn, tipoColumn;
-    @FXML
-    private TableView<?> emailsTable;
-    @FXML
-    private TableColumn<?, ?> emailsColumn;
-    @FXML
-    private TableView<?> websTable;
-    @FXML
-    private TableColumn<?, ?> urlColumn;
-    @FXML
-    private Button eliminarTelefonoBtn, eliminarEmailBtn, eliminarWebBtn;
+	private VBox root;
+	@FXML
+	private TableView<Telefono> telefonosTable;
+	@FXML
+	private TableColumn<Telefono, String> numeroColumn;
+	@FXML
+	private TableColumn<Telefono, TipoTelefono> tipoColumn;
+	@FXML
+	private TableView<Email> emailsTable;
+	@FXML
+	private TableColumn<Email, String> emailsColumn;
+	@FXML
+	private TableView<Web> websTable;
+	@FXML
+	private TableColumn<Web, String> urlColumn;
+	@FXML
+	private Button eliminarTelefonoBtn, eliminarEmailBtn, eliminarWebBtn;
 
 	public ContactoController() throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ContactoView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ContactoView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		telefonosTable.itemsProperty().bind(CVController.getCV().getContacto().telefonosProperty());
+		numeroColumn.setCellValueFactory(v -> v.getValue().numeroProperty());
+		tipoColumn.setCellValueFactory(v -> v.getValue().tipoProperty());
+		emailsTable.itemsProperty().bind(CVController.getCV().getContacto().emailsProperty());
+		emailsColumn.setCellValueFactory(v -> v.getValue().direccionProperty());
+		websTable.itemsProperty().bind(CVController.getCV().getContacto().websProperty());
+		urlColumn.setCellValueFactory(v -> v.getValue().urlProperty());
 	}
 
 	public VBox getView() {
@@ -78,19 +90,19 @@ public class ContactoController implements Initializable {
 
 	}
 
-    @FXML
-    void onSeleccionarTelefonoAction(MouseEvent event) {
+	@FXML
+	void onSeleccionarTelefonoAction(MouseEvent event) {
 
-    }
+	}
 
-    @FXML
-    void onSeleccionarEmailAction(MouseEvent event) {
+	@FXML
+	void onSeleccionarEmailAction(MouseEvent event) {
 
-    }
+	}
 
-    @FXML
-    void onSeleccionarWebAction(MouseEvent event) {
+	@FXML
+	void onSeleccionarWebAction(MouseEvent event) {
 
-    }
-	
+	}
+
 }

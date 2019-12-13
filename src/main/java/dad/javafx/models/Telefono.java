@@ -1,5 +1,7 @@
 package dad.javafx.models;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,12 +10,13 @@ import javafx.beans.property.StringProperty;
 public class Telefono {
 
 	private StringProperty numero = new SimpleStringProperty();
-	private ObjectProperty<TipoTelefono> tipoTelefono = new SimpleObjectProperty<TipoTelefono>();
+	private ObjectProperty<TipoTelefono> tipo = new SimpleObjectProperty<TipoTelefono>();
 
 	public final StringProperty numeroProperty() {
 		return this.numero;
 	}
 
+	@XmlAttribute
 	public final String getNumero() {
 		return this.numeroProperty().get();
 	}
@@ -22,16 +25,17 @@ public class Telefono {
 		this.numeroProperty().set(numero);
 	}
 
-	public final ObjectProperty<TipoTelefono> tipoTelefonoProperty() {
-		return this.tipoTelefono;
+	public final ObjectProperty<TipoTelefono> tipoProperty() {
+		return this.tipo;
+	}
+	
+	@XmlAttribute
+	public final TipoTelefono getTipo() {
+		return this.tipoProperty().get();
 	}
 
-	public final TipoTelefono getTipoTelefono() {
-		return this.tipoTelefonoProperty().get();
-	}
-
-	public final void setTipoTelefono(final TipoTelefono tipoTelefono) {
-		this.tipoTelefonoProperty().set(tipoTelefono);
+	public final void setTipo(final TipoTelefono tipoTelefono) {
+		this.tipoProperty().set(tipoTelefono);
 	}
 
 }

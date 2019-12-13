@@ -2,6 +2,11 @@ package dad.javafx.models;
 
 import java.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import dad.javafx.adapter.LocalDateAdapter;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -27,7 +32,8 @@ public class Personal {
 	public final StringProperty identificacionProperty() {
 		return this.identificacion;
 	}
-
+	
+	@XmlAttribute
 	public final String getIdentificacion() {
 		return this.identificacionProperty().get();
 	}
@@ -40,6 +46,7 @@ public class Personal {
 		return this.nombre;
 	}
 
+	@XmlElement
 	public final String getNombre() {
 		return this.nombreProperty().get();
 	}
@@ -52,6 +59,7 @@ public class Personal {
 		return this.apellidos;
 	}
 
+	@XmlElement
 	public final String getApellidos() {
 		return this.apellidosProperty().get();
 	}
@@ -63,7 +71,9 @@ public class Personal {
 	public final ObjectProperty<LocalDate> fechaNacimientoProperty() {
 		return this.fechaNacimiento;
 	}
-
+	
+	@XmlElement
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public final LocalDate getFechaNacimiento() {
 		return this.fechaNacimientoProperty().get();
 	}
@@ -76,6 +86,7 @@ public class Personal {
 		return this.direccion;
 	}
 
+	@XmlElement
 	public final String getDireccion() {
 		return this.direccionProperty().get();
 	}
@@ -88,6 +99,7 @@ public class Personal {
 		return this.codigoPostal;
 	}
 
+	@XmlElement
 	public final String getCodigoPostal() {
 		return this.codigoPostalProperty().get();
 	}
@@ -100,6 +112,7 @@ public class Personal {
 		return this.localidad;
 	}
 
+	@XmlElement
 	public final String getLocalidad() {
 		return this.localidadProperty().get();
 	}
@@ -112,6 +125,7 @@ public class Personal {
 		return this.pais;
 	}
 
+	@XmlElement
 	public final String getPais() {
 		return this.paisProperty().get();
 	}
@@ -124,6 +138,7 @@ public class Personal {
 		return this.nacionalidades;
 	}
 
+	@XmlElement
 	public final ObservableList<Nacionalidad> getNacionalidades() {
 		return this.nacionalidadesProperty().get();
 	}

@@ -1,5 +1,7 @@
 package dad.javafx.models;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -14,7 +16,8 @@ public class Contacto {
 	public final ListProperty<Telefono> telefonosProperty() {
 		return this.telefonos;
 	}
-
+	
+	@XmlElement
 	public final ObservableList<Telefono> getTelefonos() {
 		return this.telefonosProperty().get();
 	}
@@ -27,6 +30,7 @@ public class Contacto {
 		return this.emails;
 	}
 
+	@XmlElement
 	public final ObservableList<Email> getEmails() {
 		return this.emailsProperty().get();
 	}
@@ -39,6 +43,7 @@ public class Contacto {
 		return this.webs;
 	}
 
+	@XmlElement
 	public final ObservableList<Web> getWebs() {
 		return this.websProperty().get();
 	}

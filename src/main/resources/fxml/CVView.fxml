@@ -17,7 +17,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Nuevo">
+              <MenuItem mnemonicParsing="false" onAction="#onNuevoAction" text="Nuevo">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -29,7 +29,7 @@
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Abrir...">
+                  <MenuItem mnemonicParsing="false" onAction="#onAbrirAction" text="Abrir...">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -41,7 +41,7 @@
                         <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Guardar">
+                  <MenuItem mnemonicParsing="false" onAction="#onGuardarAction" text="Guardar">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,9 +53,9 @@
                         <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Guardar como..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onGuardarComoAction" text="Guardar como..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Salir">
+                  <MenuItem mnemonicParsing="false" onAction="#onSalirAction" text="Salir">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -63,7 +63,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="Acerca de..." />
+              <MenuItem mnemonicParsing="false" onAction="#onAcercaDeAction" text="Acerca de..." />
             </items>
           </Menu>
         </menus>
