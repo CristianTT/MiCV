@@ -9,7 +9,7 @@
 
 <HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="conocimientosTable" onMouseReleased="#onSeleccionarConociminetoAction" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      <TableView fx:id="conocimientosTable" editable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="denominacionColumn" prefWidth="200.0" text="Denominación" />
             <TableColumn fx:id="nivelColumn" prefWidth="200.0" text="Nivel" />

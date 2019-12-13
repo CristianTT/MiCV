@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Idioma {
+public class Idioma extends Conocimiento {
 
 	private StringProperty certificacion = new SimpleStringProperty();
 
@@ -21,5 +21,12 @@ public class Idioma {
 	public final void setCertificacion(final String certificacion) {
 		this.certificacionProperty().set(certificacion);
 	}
+
+	@Override
+	public String toString() {
+		return certificacion.get();
+	}
+	
+	
 
 }

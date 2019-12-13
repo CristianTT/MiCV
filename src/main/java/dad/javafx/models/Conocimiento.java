@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Conocimiento extends Idioma {
+public class Conocimiento {
 
 	private StringProperty denominacion = new SimpleStringProperty();
 	private ObjectProperty<Nivel> nivel = new SimpleObjectProperty<Nivel>();
